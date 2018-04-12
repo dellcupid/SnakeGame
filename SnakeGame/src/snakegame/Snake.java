@@ -109,8 +109,9 @@ public class Snake {
             break;
         }
         // change the new head spot
-
-        
+        SnakePos addPos = new SnakePos(addRow, addCol);
+        snakeBody.addFirst(addPos);
     }
+     
 }
 
