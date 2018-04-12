@@ -111,7 +111,19 @@ public class Snake {
         // change the new head spot
         SnakePos addPos = new SnakePos(addRow, addCol);
         snakeBody.addFirst(addPos);
+        snakeBody.removeLast();
+     }
+        //collition method
+        private boolean isCollision(SnakePos addPos){    
+            if (addPos.row < 0 || addPos.row > Row - 1 || addPos.col < 0 || addPos.col > Column - 1)
+                return true;
+            for(SnakePos sp : snakeBody)
+                if((sp.row == addPos.row) && (sp.col == addPos.col))
+                    return true;
+            return false; 
+        }
     }
+    
      
-}
+
 
