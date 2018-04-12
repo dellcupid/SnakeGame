@@ -6,6 +6,8 @@ import java.awt.KeyEventPostProcessor;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Board {
 
@@ -85,7 +87,6 @@ class MyKeyEventPostProcessor implements KeyEventPostProcessor {
         //current location sotrage
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
-            dir = Direction.UP;
             break;
         case KeyEvent.VK_DOWN:
             dir = Direction.DOWN;
@@ -143,6 +144,15 @@ class BoardComponent extends JComponent {
             g.fillRect(sp.col * TileWidth + XOffset, sp.row * TileHeight
                     + YOffset, TileWidth, TileHeight);
         // color the snake 
+        
+        //This doesn't work, we need to fix to populate food 
+//        Food food = snk.getFood();
+//        
+//        g.setColor(Color.GREEN);
+//        
+//        g.fillRect(food.col * TileWidth + XOffset, food.row * TileHeight 
+//                + YOffset, TileWidth, TileHeight);
+        
         
     }
     //edge of the board
