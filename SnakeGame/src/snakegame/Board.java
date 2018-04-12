@@ -9,9 +9,6 @@ import java.awt.event.KeyEvent;
 
 public class Board {
 
-    /**
-     * @param args
-     */
     public static void main(String[] args) {
 
         EventQueue.invokeLater(new Runnable() {
@@ -35,10 +32,8 @@ public class Board {
 class BoardFrame extends JFrame {
 
     private Snake snk;
-    // 在我们绘图的工作区域创建一个蛇对象引用
 
     public static final int INTERVAL = Configure.INTERVAL;
-
     // read the speed of the snake from the config
     public BoardFrame() {
 
@@ -77,8 +72,8 @@ class BoardFrame extends JFrame {
         }).start();
 
     }
-
 }
+
 
 class MyKeyEventPostProcessor implements KeyEventPostProcessor {
 
@@ -148,10 +143,6 @@ class BoardComponent extends JComponent {
             g.fillRect(sp.col * TileWidth + XOffset, sp.row * TileHeight
                     + YOffset, TileWidth, TileHeight);
         // color the snake 
-
-
-        g.setColor(Color.BLUE);
-
         
     }
     //edge of the board

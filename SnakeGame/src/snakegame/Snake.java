@@ -22,12 +22,12 @@ public class Snake {
 
     public static final int Row = Configure.ROW;
     public static final int Column = Configure.COL;
-    // 从Configure文件中读取的游戏行列
+    // get location
 
     public Snake() {
         snakeBody = new LinkedList<SnakePos>();
         reset();
-        //first snake 
+        //initialize the snake 
     }
 
     public Direction getSnakeDir() {
