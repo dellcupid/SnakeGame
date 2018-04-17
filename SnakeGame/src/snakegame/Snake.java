@@ -17,6 +17,8 @@ public class Snake {
 
     private Direction moveDir;
     
+    private Food food;
+    
     private LinkedList<SnakePos> snakeBody;
     //snake body
 
@@ -40,6 +42,16 @@ public class Snake {
 
     public LinkedList<SnakePos> getSnakeBody() {
         return snakeBody;
+    }
+    
+    public Food getFood()
+    {
+        return food;
+    }
+    
+    public void setFood(Food food)
+    {
+        this.food = food;
     }
 
     public void setMoveDir(Direction dir) {
@@ -110,9 +122,24 @@ public class Snake {
         }
         // change the new head spot
         SnakePos addPos = new SnakePos(addRow, addCol);
-        snakeBody.addFirst(addPos);
-        snakeBody.removeLast();
+        
+        if (!isFood(addPos))
+            snakeBody.removeLast();
+        
+        else 
+            setFood(new Food().getSnake(snakeBody));
+        
+//        snakeBody.addFirst(addPos);
+//        snakeBody.removeLast();
      }
+     
+     private boolean isFood(SnakePos addPos)
+     {
+         if (food.row == addPos.row && food.col == addPos.col)
+             return true;
+         return false;
+     }
+     
         //collition method
         private boolean isCollision(SnakePos addPos){    
             if (addPos.row < 0 || addPos.row > Row - 1 || addPos.col < 0 || addPos.col > Column - 1)

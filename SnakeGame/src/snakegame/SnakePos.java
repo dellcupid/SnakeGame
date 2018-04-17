@@ -19,5 +19,11 @@ public class SnakePos {
         this.col = col;
         this.row = row;
     }
+    
+    SnakePos()
+    {
+        col = 0;
+        row = 0;
+    }
 
 }

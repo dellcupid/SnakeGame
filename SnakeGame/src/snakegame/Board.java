@@ -34,13 +34,15 @@ public class Board {
 class BoardFrame extends JFrame {
 
     private Snake snk;
-
+       
     public static final int INTERVAL = Configure.INTERVAL;
     // read the speed of the snake from the config
     public BoardFrame() {
 
         snk = new Snake();
 
+        snk.setFood(new Food().getSnake(snk.getSnakeBody()));
+          
         final KeyboardFocusManager manager = KeyboardFocusManager
                 .getCurrentKeyboardFocusManager();
         // keyboard listener
@@ -87,6 +89,7 @@ class MyKeyEventPostProcessor implements KeyEventPostProcessor {
         //current location sotrage
         switch (e.getKeyCode()) {
         case KeyEvent.VK_UP:
+            dir = Direction.UP;
             break;
         case KeyEvent.VK_DOWN:
             dir = Direction.DOWN;
@@ -145,13 +148,13 @@ class BoardComponent extends JComponent {
                     + YOffset, TileWidth, TileHeight);
         // color the snake 
         
-        //This doesn't work, we need to fix to populate food 
-//        Food food = snk.getFood();
-//        
-//        g.setColor(Color.GREEN);
-//        
-//        g.fillRect(food.col * TileWidth + XOffset, food.row * TileHeight 
-//                + YOffset, TileWidth, TileHeight);
+        
+        Food food = snk.getFood();
+        
+        g.setColor(Color.GREEN);
+        
+        g.fillRect(food.col * TileWidth + XOffset, food.row * TileHeight 
+                + YOffset, TileWidth, TileHeight);
         
         
     }

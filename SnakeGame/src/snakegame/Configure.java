@@ -23,6 +23,6 @@ public class Configure {
     public static final int COL = 20;
     // The number of rows and columns of the game.
 
-    public static final int INTERVAL = 100;
+    public static final int INTERVAL = 500;
     // Snake moving time interval.
 }
