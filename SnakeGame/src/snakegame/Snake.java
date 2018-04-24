@@ -16,9 +16,9 @@ public class Snake {
     private Direction snakeDir;
 
     private Direction moveDir;
-    
+
     private Food food;
-    
+
     private LinkedList<SnakePos> snakeBody;
     //snake body
 
@@ -43,23 +43,20 @@ public class Snake {
     public LinkedList<SnakePos> getSnakeBody() {
         return snakeBody;
     }
-    
-    public Food getFood()
-    {
+
+    public Food getFood() {
         return food;
     }
-    
-    public void setFood(Food food)
-    {
+
+    public void setFood(Food food) {
         this.food = food;
     }
 
     public void setMoveDir(Direction dir) {
         this.moveDir = dir;
     }
-    
-    
-     public void reset() {
+
+    public void reset() {
         snakeBody.clear();
         // clearn the previous generate snake 
         SnakePos beginPos = null;
@@ -79,16 +76,17 @@ public class Snake {
         setSnakeDir(Direction.UP);
         // set the snake face up all the time
     }
-     //the following methof use to generate the snake positon on the board
-     private SnakePos RandomPos() {
+    //the following methof use to generate the snake positon on the board
+
+    private SnakePos RandomPos() {
 
         int randomRow = (int) (Math.random() * Row);
         int randomCol = (int) (Math.random() * Column);
 
         return new SnakePos(randomRow, randomCol);
     }
-     
-     public void snakeMove() {
+
+    public void snakeMove() {
 
         int addRow = snakeBody.getFirst().row;
         int addCol = snakeBody.getFirst().col;
@@ -101,56 +99,60 @@ public class Snake {
 
         if ((moveDir != null)
                 && !((snakeDir == up && moveDir == down)
-                        || (snakeDir == down && moveDir == up)
-                        || (snakeDir == left && moveDir == right) || (snakeDir == right && moveDir == left)))
+                || (snakeDir == down && moveDir == up)
+                || (snakeDir == left && moveDir == right) || (snakeDir == right && moveDir == left))) {
             snakeDir = moveDir;
+        }
         // bind the keyboard key to the new generated
 
         switch (snakeDir) {
-        case UP:
-            addRow--;
-            break;
-        case DOWN:
-            addRow++;
-            break;
-        case LEFT:
-            addCol--;
-            break;
-        case RIGHT:
-            addCol++;
-            break;
+            case UP:
+                addRow--;
+                break;
+            case DOWN:
+                addRow++;
+                break;
+            case LEFT:
+                addCol--;
+                break;
+            case RIGHT:
+                addCol++;
+                break;
         }
         // change the new head spot
         SnakePos addPos = new SnakePos(addRow, addCol);
-        
-        if (!isFood(addPos))
+
+        if (!isFood(addPos)) {
             snakeBody.removeLast();
-        
-        else 
+        } else {
             setFood(new Food().getSnake(snakeBody));
-        
+        }
 //        snakeBody.addFirst(addPos);
 //        snakeBody.removeLast();
-     }
-     
-     private boolean isFood(SnakePos addPos)
-     {
-         if (food.row == addPos.row && food.col == addPos.col)
-             return true;
-         return false;
-     }
-     
-        //collition method
-        private boolean isCollision(SnakePos addPos){    
-            if (addPos.row < 0 || addPos.row > Row - 1 || addPos.col < 0 || addPos.col > Column - 1)
-                return true;
-            for(SnakePos sp : snakeBody)
-                if((sp.row == addPos.row) && (sp.col == addPos.col))
-                    return true;
-            return false; 
+        if (isCollision(addPos)) {
+            reset();
+        } else {
+            snakeBody.addFirst(addPos);
         }
     }
-    
-     
 
+    private boolean isFood(SnakePos addPos) {
+        if (food.row == addPos.row && food.col == addPos.col) {
+            return true;
+        }
+        return false;
+    }
 
+    //collition method
+    private boolean isCollision(SnakePos addPos) {
+        if (addPos.row < 0 || addPos.row > Row - 1 || addPos.col < 0 || addPos.col > Column - 1) {
+            return true;
+        }
+        for (SnakePos sp : snakeBody) {
+            if ((sp.row == addPos.row) && (sp.col == addPos.col)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}

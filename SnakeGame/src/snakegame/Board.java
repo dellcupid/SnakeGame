@@ -34,15 +34,16 @@ public class Board {
 class BoardFrame extends JFrame {
 
     private Snake snk;
-       
+
     public static final int INTERVAL = Configure.INTERVAL;
+
     // read the speed of the snake from the config
     public BoardFrame() {
 
         snk = new Snake();
 
         snk.setFood(new Food().getSnake(snk.getSnakeBody()));
-          
+
         final KeyboardFocusManager manager = KeyboardFocusManager
                 .getCurrentKeyboardFocusManager();
         // keyboard listener
@@ -78,7 +79,6 @@ class BoardFrame extends JFrame {
     }
 }
 
-
 class MyKeyEventPostProcessor implements KeyEventPostProcessor {
 
     private Snake snk;
@@ -88,23 +88,23 @@ class MyKeyEventPostProcessor implements KeyEventPostProcessor {
         Direction dir = null;
         //current location sotrage
         switch (e.getKeyCode()) {
-        case KeyEvent.VK_UP:
-            dir = Direction.UP;
-            break;
-        case KeyEvent.VK_DOWN:
-            dir = Direction.DOWN;
-            break;
-        case KeyEvent.VK_LEFT:
-            dir = Direction.LEFT;
-            break;
-        case KeyEvent.VK_RIGHT:
-            dir = Direction.RIGHT;
-            break;
+            case KeyEvent.VK_UP:
+                dir = Direction.UP;
+                break;
+            case KeyEvent.VK_DOWN:
+                dir = Direction.DOWN;
+                break;
+            case KeyEvent.VK_LEFT:
+                dir = Direction.LEFT;
+                break;
+            case KeyEvent.VK_RIGHT:
+                dir = Direction.RIGHT;
+                break;
         }
-        
 
-        if (dir != null)
+        if (dir != null) {
             snk.setMoveDir(dir);
+        }
         // log into the current location storage
         return true;
     }
@@ -114,6 +114,7 @@ class MyKeyEventPostProcessor implements KeyEventPostProcessor {
     }
 
 }
+
 class BoardComponent extends JComponent {
 
     public static final int Width = Configure.WIDTH;
@@ -143,21 +144,21 @@ class BoardComponent extends JComponent {
 
         g.setColor(Color.ORANGE);
 
-        for (SnakePos sp : snk.getSnakeBody())
+        for (SnakePos sp : snk.getSnakeBody()) {
             g.fillRect(sp.col * TileWidth + XOffset, sp.row * TileHeight
                     + YOffset, TileWidth, TileHeight);
+        }
         // color the snake 
-        
-        
+
         Food food = snk.getFood();
-        
+
         g.setColor(Color.GREEN);
-        
-        g.fillRect(food.col * TileWidth + XOffset, food.row * TileHeight 
+
+        g.fillRect(food.col * TileWidth + XOffset, food.row * TileHeight
                 + YOffset, TileWidth, TileHeight);
-        
-        
+
     }
+
     //edge of the board
     public void drawDecoration(Graphics g) {
         g.setColor(Color.RED);
@@ -166,7 +167,6 @@ class BoardComponent extends JComponent {
 
     public Dimension getPreferredSize() {
         return new Dimension(Width, Height);
-        
+
     }
 }
-
