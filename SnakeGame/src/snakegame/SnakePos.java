@@ -20,8 +20,7 @@ public class SnakePos {
         this.row = row;
     }
     
-    SnakePos()
-    {
+    SnakePos(){
         col = 0;
         row = 0;
     }

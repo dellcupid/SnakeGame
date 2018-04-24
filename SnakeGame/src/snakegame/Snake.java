@@ -18,6 +18,7 @@ public class Snake {
     private Direction moveDir;
 
     private Food food;
+    private SFood sFood;
 
     private LinkedList<SnakePos> snakeBody;
     //snake body
@@ -50,6 +51,16 @@ public class Snake {
 
     public void setFood(Food food) {
         this.food = food;
+    }
+    
+    public SFood getSFood()
+    {
+        return sFood;
+    }
+    
+    public void setSFood(SFood sFood)
+    {
+        this.sFood = sFood;
     }
 
     public void setMoveDir(Direction dir) {
@@ -122,13 +133,23 @@ public class Snake {
         // change the new head spot
         SnakePos addPos = new SnakePos(addRow, addCol);
 
-        if (!isFood(addPos)) {
+        if (!isFood(addPos) && !isSFood(addPos))
+        {
             snakeBody.removeLast();
-        } else {
-            setFood(new Food().getSnake(snakeBody));
         }
-//        snakeBody.addFirst(addPos);
-//        snakeBody.removeLast();
+        else if(isFood(addPos) && !isSFood(addPos))
+        {
+            setFood(new Food().getSnake(snakeBody));
+           
+        }
+        else if (!isFood(addPos) && isSFood(addPos))
+        {
+            
+            setSFood(new SFood().getSnake(snakeBody));
+            snakeBody.removeLast();
+            snakeBody.removeLast();
+        }
+
         if (isCollision(addPos)) {
             reset();
         } else {
@@ -138,6 +159,13 @@ public class Snake {
 
     private boolean isFood(SnakePos addPos) {
         if (food.row == addPos.row && food.col == addPos.col) {
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean isSFood(SnakePos addPos) {
+        if (sFood.row == addPos.row && sFood.col == addPos.col) {
             return true;
         }
         return false;

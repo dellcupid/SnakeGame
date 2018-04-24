@@ -43,6 +43,7 @@ class BoardFrame extends JFrame {
         snk = new Snake();
 
         snk.setFood(new Food().getSnake(snk.getSnakeBody()));
+        snk.setSFood(new SFood().getSnake(snk.getSnakeBody()));
 
         final KeyboardFocusManager manager = KeyboardFocusManager
                 .getCurrentKeyboardFocusManager();
@@ -155,6 +156,13 @@ class BoardComponent extends JComponent {
         g.setColor(Color.GREEN);
 
         g.fillRect(food.col * TileWidth + XOffset, food.row * TileHeight
+                + YOffset, TileWidth, TileHeight);
+        
+        SFood sFood = snk.getSFood();
+        
+        g.setColor(Color.RED);
+        
+        g.fillRect(sFood.col * TileWidth + XOffset,sFood.row * TileHeight
                 + YOffset, TileWidth, TileHeight);
 
     }
