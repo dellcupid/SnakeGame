@@ -6,6 +6,8 @@
 package snakegame;
 
 import java.util.LinkedList;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -150,13 +152,21 @@ public class Snake {
         {
             
             setSFood(new SFood().getSnake(snakeBody));
+             if(snakeBody.size() < 7)
+            {
+                JOptionPane.showMessageDialog(new JFrame(), "you are not strong enough and you're poisoned to death");
+                System.exit(0);
+            }
             snakeBody.removeLast();
             snakeBody.removeLast();
             setScore(score - 1);
         }
 
         if (isCollision(addPos)) {
-            reset();
+             
+                JOptionPane.showMessageDialog(new JFrame(), "Game Over!");
+                System.exit(0);
+            
         } else {
             snakeBody.addFirst(addPos);
         }
