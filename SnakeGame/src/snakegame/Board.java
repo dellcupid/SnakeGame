@@ -181,6 +181,7 @@ class BoardComponent extends JComponent {
     
     public void updateScore(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawString("Score: " + snk.getScore(), 20, 20);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 25)); 
+        g.drawString("Score: " + snk.getScore(), 15, 24);
     }
 }
