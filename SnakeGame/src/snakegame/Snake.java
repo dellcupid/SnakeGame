@@ -22,6 +22,8 @@ public class Snake {
 
     private LinkedList<SnakePos> snakeBody;
     //snake body
+    
+    private int score = 0;
 
     public static final int Row = Configure.ROW;
     public static final int Column = Configure.COL;
@@ -86,6 +88,8 @@ public class Snake {
         // place the snake bodysection into the snake body
         setSnakeDir(Direction.UP);
         // set the snake face up all the time
+        
+        setScore(0);
     }
     //the following methof use to generate the snake positon on the board
 
@@ -140,7 +144,7 @@ public class Snake {
         else if(isFood(addPos) && !isSFood(addPos))
         {
             setFood(new Food().getSnake(snakeBody));
-           
+            setScore(score + 1);
         }
         else if (!isFood(addPos) && isSFood(addPos))
         {
@@ -148,6 +152,7 @@ public class Snake {
             setSFood(new SFood().getSnake(snakeBody));
             snakeBody.removeLast();
             snakeBody.removeLast();
+            setScore(score - 1);
         }
 
         if (isCollision(addPos)) {
@@ -182,5 +187,19 @@ public class Snake {
             }
         }
         return false;
+    }
+
+    /**
+     * @return the score
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * @param score the score to set
+     */
+    public void setScore(int score) {
+        this.score = score;
     }
 }

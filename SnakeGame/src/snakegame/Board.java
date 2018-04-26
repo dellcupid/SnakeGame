@@ -138,6 +138,7 @@ class BoardComponent extends JComponent {
     public void paintComponent(Graphics g) {
         drawDecoration(g);
         drawFill(g);
+        updateScore(g);
     }
 
     //draw the snake
@@ -176,5 +177,10 @@ class BoardComponent extends JComponent {
     public Dimension getPreferredSize() {
         return new Dimension(Width, Height);
 
+    }
+    
+    public void updateScore(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.drawString("Score: " + snk.getScore(), 20, 20);
     }
 }
