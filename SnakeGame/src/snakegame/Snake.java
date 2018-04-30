@@ -152,6 +152,7 @@ public class Snake {
         {
             
             setSFood(new SFood().getSnake(snakeBody));
+            setScore(score + 1);
              if(snakeBody.size() < 7)
             {
                 JOptionPane.showMessageDialog(new JFrame(), "you are not strong enough and you're poisoned to death");
@@ -159,7 +160,6 @@ public class Snake {
             }
             snakeBody.removeLast();
             snakeBody.removeLast();
-            setScore(score - 1);
         }
 
         if (isCollision(addPos)) {
