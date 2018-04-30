@@ -137,6 +137,10 @@ class BoardComponent extends JComponent {
     //print method
     public void paintComponent(Graphics g) {
         drawDecoration(g);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 10)); 
+        g.drawString("Use arrows to move // Green increases length and score", 8, 285);
+        g.drawString("Red decreses your length and adds to the score, but only if you are strong enough!", 8, 295);
         drawFill(g);
         updateScore(g);
     }
